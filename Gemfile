@@ -63,4 +63,4 @@ end
   gem 'simple_form'
   gem 'css3-progress-bar-rails'
 
-  gem 'tzinfo-data', platforms: [:mingw, :mswin]
+  #gem 'tzinfo-data', platforms: [:mingw, :mswin]
