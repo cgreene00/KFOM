@@ -47,9 +47,9 @@ end
   gem 'spring'
   
 group :production do
-  #gem 'pg'
+  gem 'pg', '~> 0.20'
 end
-  gem 'pg'
+  
   gem 'devise'
   gem 'omniauth'
   gem 'omniauth-facebook'
