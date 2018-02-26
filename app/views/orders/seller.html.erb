@@ -1,0 +1,19 @@
+<% if @posts.any? %>
+  <% @posts.each do |p| %>
+    <% if p.orders.any? %>
+      <h2><%= p.title %></h2>
+      <ul>
+        <% p.orders.current.each do |o| %>
+          <li><%= o.user.email %>, Quantity: <%= o.quantity %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <div id='print'>
+    <button type='button' onclick='printpage()' class='glyphicon glyphicon-print btn btn-lg'>
+    <h6>Print</h6>
+    </button>
+  </div>
+<% else %>
+  <h2>No current listings</h2>
+<% end %>

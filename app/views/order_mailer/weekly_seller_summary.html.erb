@@ -1,0 +1,26 @@
+<h3>Seller summary for week <%= "#{@week.start.strftime('%m/%d/%y')} - #{@week.end.strftime('%m/%d/%y')}" %></h3>
+<table style="width:100%; border-style:solid; border-width:1px; border-color:#000000;">
+  <thead>
+    <th style="width:30% border-style:solid; border-width:1px; border-color:#000000;">Business Name</th>
+    <th style="width:10% border-style:solid; border-width:1px; border-color:#000000;">Order Total</th>
+    <th style="width:60% border-style:solid; border-width:1px; border-color:#000000;">Contact Info</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;">
+        <%= user.profile.business_name %>
+      </td>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;">
+        <%= number_to_currency(user.profile.order_total) %>
+      </td>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;">
+        <ul>
+          <li>Email: <%= user.email %></li>
+          <li>Phone: <%= user.profile.phone_formatted %></li>
+        </ul>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>  
+</table>

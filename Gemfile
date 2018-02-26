@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -35,13 +36,31 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'sqlite3'
+  gem 'dotenv-rails'
   gem 'web-console', '~> 2.0'
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
+end
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+group :production do
+  gem 'pg'
 end
+  
+  gem 'devise'
+  gem 'omniauth'
+  gem 'omniauth-facebook'
+  gem 'omniauth-google-oauth2'
+  gem 'google-api-client', '0.8.2', require: 'google/api_client'
+  gem 'bootstrap-sass'
+  gem 'bootstrap-social-rails'
+  gem 'font-awesome-rails'
+  gem 'rails_12factor'
+  gem 'sendgrid-ruby'
+  gem 'simple_form'
+  gem 'css3-progress-bar-rails'
 
+  gem 'tzinfo-data', platforms: [:mingw, :mswin]

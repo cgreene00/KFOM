@@ -1,0 +1,13 @@
+<div class='inline'> 
+  <% if current_user.orders.current.any? %>
+    <a href=<%= orders_path(:id => current_user.id) %> class='btn btn-default btn-lg'>
+      <span class='glyphicon glyphicon-th-list' aria-hidden='true'></span>
+      <h6>Current week's order</h6>
+    </a>
+  <% end %>
+  <a href=<%= weeks_path %> class='btn btn-default btn-lg'>
+    <span class='glyphicon glyphicon-header' aria-hidden='true'></span>
+    <h6>Order history</h6>
+  </a>
+</div>
+<br />

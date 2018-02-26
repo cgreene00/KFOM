@@ -1,0 +1,21 @@
+<% if @profile.seller? %>
+  <h3>Hello!</h3>
+  <br />
+  <br />
+  <p>Thank you for registering with Klamath Farmers Online Marketplace (KFOM). We hope this website
+  helps you connect with local buyers. This effort is mostly volunteer-run, so it’s important that you
+  carefully read the following policies and procedures to make sure things run smoothly!</p>
+  <br />
+  <p>Terms and Conditions:</p>
+  <%= render 'profiles/seller' %>
+<% else %>
+  <h3>Hello!</h3>
+  <br />
+  <br />
+  <p>Thank you for registering with Klamath Farmers Online Marketplace (KFOM). We hope this website
+  helps you connect with local producers. This effort is mostly volunteer-run, so it’s important that you
+  carefully read the following policies and procedures to make sure things run smoothly!</p>
+  <br />
+  <p>Terms and Conditions:</p>
+  <%= render 'profiles/buyer' %>
+<% end %>

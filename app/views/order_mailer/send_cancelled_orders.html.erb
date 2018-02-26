@@ -1,0 +1,24 @@
+<h3>Hello,</h3>
+<p>The following orders have been cancelled because the seller was not able to meet the
+minimum group total.</p>
+<br />
+<table style='width:100%;'>
+  <thead>
+    <th>Producer Name</th>
+    <th>Order Details</th>
+    <th>Total</th>
+  </thead>
+  <tbody>
+    <% @cancelled_items.each do |seller, items| %>
+    <tr>
+      <td><%= seller.profile.business_name %></td>
+      <td>
+        <% items.each do |i| %>
+          <li><%= "#{i.post.title} - Quantity to pick up: #{i.quantity}"  %> </li>
+        <% end %>
+      </td>
+      <td>Cancelled</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

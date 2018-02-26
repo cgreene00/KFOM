@@ -1,0 +1,26 @@
+<h2>
+  <%= @post.title %>
+  <br />
+  <small>from <%= @post.user.profile.business_name %></small>
+</h2>
+<br />
+<div class='desc'>
+  <%= @post.description %>
+</div>
+<br />
+<p><%= number_to_currency(@post.price) %> <%= @post.unit %></p>
+<br />
+<%= form_for @order do |f| %>
+  <%= hidden_field_tag :post_id, @post.id %>
+  <div class='form-group'>
+    
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :quantity, "Quantity you would like to buy" %>
+    <%= f.number_field :quantity, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.submit btnText, class: 'btn btn-success' %>
+    <%= link_to "Cancel", posts_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>

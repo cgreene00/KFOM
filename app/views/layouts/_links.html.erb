@@ -1,0 +1,13 @@
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  <% if !current_user.profile.nil? %>
+    <%= link_to('Current listings',posts_path, class: 'btn btn-warning') %>
+    <%= link_to 'Edit profile', edit_profile_path(current_user), :class => 'btn btn-warning' %>
+  <% end %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-danger'  %>  
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+
+</p>

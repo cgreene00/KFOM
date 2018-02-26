@@ -1,0 +1,7 @@
+<h3>Hello <%= @profile.business_name %>,</h3>
+<br />
+<p>Your orders for this week were automatically cancelled because your 
+current group total of <%= number_to_currency(@profile.order_total) %> did not 
+meet the minimum you have set of <%= number_to_currency(@profile.minimum_order) %>.</p>
+<p>Your buyers have been notified of this cancellation.</p>
+

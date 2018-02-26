@@ -1,0 +1,34 @@
+<% if signed_in? %>
+  <%= render 'posts/buyer_links' %>
+<% end %>
+<% if @active_posts.any? %>
+  <div class='col-md-9'>
+    <% @active_posts.each do |user, posts| %>
+      <div class='seller-post box-drop-shadow'>
+        <h2><%= user.profile.business_name %>
+          <% if signed_in? %>
+            <%=link_to 'contact info', profile_path(user.profile), class: ' small normal' %>
+          <% end %>
+        </h2>
+        <!-- h5><%= "Current group total: #{number_to_percentage(user.profile.group_percentage, precision: 2)}" %></h5> 
+        <%= progress_bar(user.profile.group_percentage, color: 'orange', rounded: true) %>
+        <hr class='clearfix' / -->
+        <ul>
+          <% posts.each do |p| %>
+            <li><%= "#{p.title} @ #{number_to_currency(p.price)} #{p.unit}" %></li>
+          <% end %>
+        </ul>
+        <% if signed_in? %>
+          <%= link_to 'Order', post_path(user), class: 'btn btn-success pull-right' %> 
+        <% end %>
+        <p class='clearfix'></p>
+      </div>
+    <% end %>
+  </div>
+  <% if signed_in? %>
+    <%= render 'posts/submit' %>
+  <% end %>
+  <%= render 'shared/script_footer_fix' %>
+<% else %>
+  <h1>No current listings.  Please check back on Friday.</h1>
+<% end %>

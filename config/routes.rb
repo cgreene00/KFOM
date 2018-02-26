@@ -1,9 +1,44 @@
 Rails.application.routes.draw do
+
+  devise_for :users, class_name: 'FormUser', controllers: {
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'omniauth_callbacks'
+  }
+  
+  devise_scope :user do
+    get '/users/auth/:provider/upgrade' => 'omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
+    get '/users/auth/:provider/setup', :to => 'omniauth_callbacks#setup'
+  end
+  
+  resources :profiles do
+    member do
+      get :account_type
+      get :residential_info
+      get :terms
+      post :validate_step
+    end
+  end
+  resources :posts do
+    member do
+      post 'touch'
+      get :minimum_order
+      patch :update_minimum_order
+    end
+  end
+  resources :orders do
+    member do
+      get :submit
+    end
+  end
+  
+  resources :weeks, only: [:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'shared#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

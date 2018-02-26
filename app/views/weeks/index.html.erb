@@ -1,0 +1,9 @@
+<% if @weeks.any? %>
+  <ul>
+    <% @weeks.each do |w, orders| %>
+      <li><%= link_to "#{w.start.strftime('%m/%d/%y')} - #{w.end.strftime('%m/%d/%y')}", week_path(w) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>No previous orders found</h2>
+<% end %>

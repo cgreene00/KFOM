@@ -1,0 +1,21 @@
+<%= render 'seller_links' %>
+
+<% if @active_posts.any? %>
+  <div class='col-group card-deck'>
+    <h2>Current listings</h2>
+    <%= render @active_posts %>
+  </div>
+<% else %>
+  <h2>No current offers</h2>
+  <hr />
+<% end %>
+
+<% if @inactive_posts.any? %>
+  <br />
+  <div class='clear'></div>
+  <div class='col-group card-deck'>
+    <h2>Inactive listings</h2>
+    <%= render @inactive_posts %>
+  </div>
+<% end %>
+<%= render 'shared/script_footer_fix' %>

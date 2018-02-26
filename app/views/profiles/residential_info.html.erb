@@ -1,0 +1,52 @@
+<h2>How can we contact you</h2>
+
+<% if !@profile_wizard.profile.seller? %>
+  <p>The information provided is for KFOM use only and will only be provided to producers you purchase from.</p>
+<% end %>
+<%= form_for @profile_wizard, as: :profile_wizard, url: validate_step_profile_path do |f| %>
+  
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%= hidden_field_tag :current_step, 'residential_info' %>
+  <div class='form-group'>
+    * <%= f.label :firstname %>
+    <%= f.text_field :firstname, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    * <%= f.label :lastname %>
+    <%= f.text_field :lastname, class: 'form-control' %>
+  </div>
+  <% if @profile_wizard.profile.seller? %>
+    <div class='form-group'>
+      * <%= f.label :business_name %>
+      <%= f.text_field :business_name, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      * <%= f.label :payable_to, "Who should buyers make checks payable to?" %>
+      <%= f.text_field :payable_to, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
+    <div class='form-group'>      
+      <%= f.label :state %><br/>
+      <%= f.select :state, options_for_select(Profile::States.to_a), class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :zipcode %>
+      <%= f.text_field :zipcode, class: 'form-control' %>
+    </div>    
+  <% end %>
+  <div class='form-group'>
+    * <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.submit 'Continue', class: 'btn btn-success' %>
+  </div>
+<% end %>

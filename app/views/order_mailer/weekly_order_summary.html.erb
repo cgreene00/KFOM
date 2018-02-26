@@ -1,0 +1,45 @@
+<h3>Weekly Order Summary for week: <%= "#{@week.start.strftime('%m/%d/%y')} - #{@week.end.strftime('%m/%d/%y')}" %></h3>
+<table style="width:100%; border-style:solid; border-width:1px; border-color:#000000;">
+  <thead>
+    <th style="width:20%; border-style:solid; border-width:1px; border-color:#000000;">Name</th>
+    <th style="width:70%; border-style:solid; border-width:1px; border-color:#000000;">Order</th>
+    <th style="width:10%; border-style:solid; border-width:1px; border-color:#000000;">Initials</th>
+  </thead>
+  <tbody>
+  <% @orders.each do |user, items| %>
+    <tr>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;">
+        <p><%= "#{user.profile.lastname}, #{user.profile.firstname}" %></p>
+        <p><%= user.profile.phone_formatted %></p>
+      </td>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;">
+        <table style="width:100%;">
+          <thead>
+            <th style="width:30%;">Farm Name</th>
+            <th style="width:60%;">Items</th>
+            <th style="width:10%;">Total</th>
+          </thead>
+          <tbody>
+            <% order_items = items.group_by{|i| i.post.user} %>
+            <% order_items.each do |farm, orders| %>
+              <tr>
+                <td><%= farm.profile.business_name %></td>
+                <td>
+                  <% subtotal = 0 %>
+                  <% orders.each do |o| %>
+                    <% subtotal = subtotal.to_f + (o.post.price.to_f * o.quantity.to_i) %>
+                    <li><%= "#{o.post.title} - Quantity: #{o.quantity}" %></li>
+                  <% end %>
+                </td>
+                <td><%= number_to_currency(subtotal) %></td>
+              </tr>
+              <hr />
+            <% end %>          
+          </tbody>
+        </table>
+      </td>
+      <td style="border-style:solid; border-width:1px; border-color:#000000;"></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+<header>
+  <nav class='nav navbar'>
+    <a href='/' class='main-logo'>
+      <h1>
+        <%= image_tag('KFOM_Logo_fixed.png') %>
+          <blast>Klamath Farmer's</blast> Online Marketplace
+      </h1>
+    </a>
+    <div>
+      <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>
+      <% end %>
+      <%= render 'layouts/links' %>
+    </div>
+    <div class="clear"></div>
+  </nav>
+</header>

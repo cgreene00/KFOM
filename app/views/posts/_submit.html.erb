@@ -1,0 +1,17 @@
+<br />
+<div class='col-md-3 order-pane box-drop-shadow'>
+  <h3>Current Order</h3>
+  <% if @my_orders.nil? %>
+    <h6>No current orders</h6>
+  <% else %>
+    <% @my_orders.each do |user, orders| %>
+      <%= user.profile.business_name %>
+      <ul>
+        <% orders.each do |o| %>
+          <li><%= "#{o.post.title} - Qty: #{o.quantity}" %></li> 
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= link_to "Submit Order", submit_order_path(current_user), class: 'btn btn-success' %>
+</div>

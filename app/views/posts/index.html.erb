@@ -1,0 +1,9 @@
+<%= render 'posts/index_message' %>
+
+<% if current_user.profile.seller? %>
+  <%= render 'seller_index' %>
+<% else %>
+  <%= render 'buyer_index' %>
+<% end %>
+
+

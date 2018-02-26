@@ -1,0 +1,45 @@
+<h3>Hello,</h3>
+<p>The minimum order for your KFOM listing has been met! The following is a summary of customer orders
+for this week. Please be sure to package each individual’s order and clearly label with the customer
+name. Delivery is due at the Klamath Tool Library by this Thursday at 4:30 pm (current door code is
+found at the bottom of this email)</p>
+<br />
+<% @orders.each do |user, items| %>
+<% subtotal = 0 %>
+  <table>
+    <thead>
+      <th>Customer Name</th>
+      <th>Contact Info</th>
+      <th>Order</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <td><%= user.profile.name %></td>
+      <td>
+        <li><%= user.email %></li>
+        <li><%= user.profile.phone_formatted %></li>
+      </td>
+      <td>
+        <% items.each do |i| %>
+          <% subtotal = subtotal.to_f + (i.quantity.to_i * i.post.price.to_f) %>
+          <li><%= "#{i.post.title} - #{i.quantity}" %></li>
+        <% end %>
+      </td>
+      <td><%= number_to_currency(subtotal) %></td>
+    </tbody>
+  </table>
+<br />
+<% end %>
+<br />
+
+<p>Door Code: 1356</p>
+<p>Payment: Customers have been instructed to make payment in the form of cash or check in the drop
+box at the Tool Library unless you have given alternative instructions individually. Please pick up your
+payments from the lockbox as soon as you are able.</p>
+
+<p>Cancellation: In emergency instances where a producer must cancel an order, the producer is
+responsible to individually notify customers of the cancellation by noon on Thursday. Multiple order
+cancellations will result in the producer having membership revoked.</p>
+
+<p>Questions: Email KFOMFoodBuyingClub@gmail.com or call Katie Swanson at 541-827-9442 or Jessie
+Dubose at 541-539-5920.</p>

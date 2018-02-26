@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>KFOM</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>KFOM</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class='container'>
+      <!-- Show flash notices -->
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+     
+      <!-- Show header -->
+      <div class="header">
+        <%= render 'layouts/header' %>
+      </div>
+        <!-- Content -->
+      <div class='content'> 
+        <%= yield %>
+      </div>
+      <!-- Show footer -->
+      <!-- div class="footer">
+        <!-- %= render 'layouts/footer' % -->
+      </div -->
+    </div>
+    <%= debug(params) if Rails.env.development? %>
+  </body>
 </html>

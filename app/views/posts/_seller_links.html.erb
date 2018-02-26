@@ -1,0 +1,19 @@
+<div class='inline'> 
+    
+  <a href=<%= new_post_path %> class='btn btn-default btn-lg'>
+      <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+      <h6>Add a new listing</h6>
+  </a>
+  <a href=<%= minimum_order_post_path(:id => current_user.id) %> class='btn btn-default btn-lg'>
+    <span class='glyphicon glyphicon-usd' aria-hidden='true'></span>
+    <h6>Update minimum order
+    <%= number_to_currency(current_user.profile.minimum_order) %>
+    </h6>
+  </a>
+
+  <a href=<%= orders_path(:id => current_user.id) %> class='btn btn-default btn-lg'>
+    <span class='glyphicon glyphicon-th-list' aria-hidden='true'></span>
+    <h6>View all orders</h6>
+  </a>
+</div>
+<br />

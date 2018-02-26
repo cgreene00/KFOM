@@ -1,0 +1,62 @@
+<h3>Hello,</h3>
+<p>Thank you for buying locally through KFOM! The following is a summary of your orders for the week. All
+orders must be picked up this <strong>Thursday between 5-7 pm in the back room of the Klamath Tool Library</strong>
+(1221 Main St.) Remember that you must pay each food producer individually. Please write a <u>separate
+check to each individual food producer</u> for the totals listed below and leave in the drop box when you
+pick up. If you choose to pay with cash, please separate exact change into envelopes for each producer.
+Only producers whose minimum total was met will fulfill orders, which are listed below.</p>
+<br />
+  <table style='width:100%;'>
+    <thead>
+      <th>Producer Name</th>
+      <th>Contact Info</th>
+      <th>Order Details</th>
+      <th>Check Payable To</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <% @order_items.each do |seller, items| %>
+      <% subtotal = 0 %>
+      <tr>
+        <td><%= seller.profile.business_name %></td>
+        <td>
+          <li><%= seller.email %></li>
+          <li><%= seller.profile.phone_formatted %></li>
+        </td>
+        <td>
+          <% items.each do |i| %>
+            <% subtotal = subtotal.to_f + (i.quantity.to_i * i.post.price.to_f) %>
+            <li><%= "#{i.post.title} - Quantity to pick up: #{i.quantity}"  %> </li>
+          <% end %>
+        </td>
+        <td><%= seller.profile.payable_to %></td>
+        <td><%= number_to_currency(subtotal) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<br />
+<em>KFOM is a collaborative effort of various volunteers and organizations and is reliant on the honor system
+and personal responsibility. Please make sure you understand the instructions below:</em>
+<br />
+<h4>Payment:</h4>
+<p>If you would like to pay using your SNAP benefits, please call the Klamath Farmer’s Market to pay over
+the phone at 541-273- 1102 from 9 am – 9 pm, Monday – Friday. Please communicate your total
+balance and pay any remaining balance directly to the farmer.</p>
+
+<p>Failure to pay will result in cancellation of your membership with KFOM. If you fail to pick up your order
+during the specified hours, you will not be able to arrange an alternative pickup time. Please take only
+what you ordered and pay the food producers for their hard work.</p>
+
+<p>Your orders will not be aggregated into one bundle, so make sure to pick up each of your orders from
+each producer.</p>
+
+<h4>Questions:</h4>
+
+<p>Please contact food producers directly with any questions regarding your order. If you are unable to
+contact the producer, please contact KFOM.</p>
+
+<h4>KFOM Contact:</h4>
+<p>KFOMFoodBuyingClub@gmail.com, call Katie Swanson at 541-827- 9442 or Jessie Dubose at 541-539-5920.</p>
+
+<p>Thank you for supporting the local food system!</p>

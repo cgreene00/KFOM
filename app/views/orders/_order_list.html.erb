@@ -1,0 +1,21 @@
+<% if @orders.any? %>
+  <% @orders.each do |post_user, orders| %>
+    <% sub_total = 0 %>
+    <h3><%= post_user.profile.business_name %></h3>
+    <ul>
+      <% orders.each do |o| %>
+        <% sub_total = sub_total.to_f + (o.post.price.to_f * o.quantity.to_f) %>
+        <li>
+          <%= "#{o.post.title} @ #{number_to_currency(o.post.price)} #{o.post.unit}  Quantity: #{o.quantity}" %>
+          <% if !o.archived? %>
+            <%= link_to "Delete", order_path(o), method: :delete, class: 'btn btn-xxs btn-danger' %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <h5><strong>Total: <%= number_to_currency(sub_total) %></strong></h5>
+    <br />
+  <% end %>
+<% else %>
+  <h4>No current orders</h4>
+<% end %>

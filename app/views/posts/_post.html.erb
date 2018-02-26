@@ -1,0 +1,40 @@
+<div class='card col'>
+  <div class='card-block'>
+    <h4 class='card-title'>
+      <%= post.title %>
+      <br />
+      <small class='card-seller'>from <%= post.user.profile.business_name %></small>
+      <br />
+      <% if correct_user(post) && post.active %>
+        <span class='x-small'><%= post.orders.count %> people have expressed interest </span>
+      <% end %>
+    </h4>
+    <p class='card-text'><%= truncate(post.description, length: 80) %></p>
+    <p class='card-text small inline'>
+      <%= "#{number_to_currency(post.price)} #{post.unit} - Max Avaliable: #{post.max_avaliable}" %>
+    </p>
+    <% if correct_user(post) %>
+      <span class='btn-group inline'>
+        <%= link_to "Edit", edit_post_path(post), class: 'btn btn-info' %>
+        <%= link_to "Delete", post_path(post), method: :delete, class: 'btn btn-danger' %>
+        <% if post.orders.any? %>
+          <%= link_to "Show Orders", order_path(post), class: 'btn btn-success' %>
+        <% end %>
+        <% if !post.active? %>
+          <%= link_to "Renew", touch_post_path(post), method: :post, class: 'btn btn-success' %>
+        <% end %>
+      </span>
+    <% elsif buyer? %>
+      <% if has_order?(post) %>
+        <%= link_to "Modify Order, Qty: #{@order.quantity}", edit_order_path(@order), class: 'btn btn-info' %>
+      <% elsif post.max_avaliable.to_i == 0 %>
+        <h3>Sold out</h3>
+      <% else %>
+        <%= link_to "Order", new_order_path(:id => post.id), class: 'btn btn-success' %>
+      <% end %>
+    <% end %>
+    <% if !@order.nil? && !@order.submitted? %>
+	  <p>Warning! Order not submitted!</p>
+    <% end %>
+  </div>
+</div>
