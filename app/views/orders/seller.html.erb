@@ -1,6 +1,6 @@
 <% if @posts.any? %>
   <% @posts.each do |p| %>
-    <% if p.orders.any? %>
+    <% if p.orders.current.any? %>
       <h2><%= p.title %></h2>
       <ul>
         <% p.orders.current.each do |o| %>

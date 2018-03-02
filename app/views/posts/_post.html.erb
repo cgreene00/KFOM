@@ -17,7 +17,7 @@
       <span class='btn-group inline'>
         <%= link_to "Edit", edit_post_path(post), class: 'btn btn-info' %>
         <%= link_to "Delete", post_path(post), method: :delete, class: 'btn btn-danger' %>
-        <% if post.orders.any? %>
+        <% if post.orders.submitted.any? %>
           <%= link_to "Show Orders", order_path(post), class: 'btn btn-success' %>
         <% end %>
         <% if !post.active? %>
