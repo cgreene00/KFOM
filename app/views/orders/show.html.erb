@@ -1,2 +1,6 @@
-<h4>Orders for <%= @post.title %></h4>
-<%= render @orders %>
+<% if @orders.any? %>
+	<h4>Orders for <%= @post.title %></h4>
+	<%= render @orders %>
+<% else %>
+	<h4>Currently there are no orders for this item.</h4>
+<% end %>

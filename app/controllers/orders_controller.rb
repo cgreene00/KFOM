@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   
   def show    
     @post = Post.find(params[:id])
-    @orders = @post.orders
+    @orders = @post.orders.current
   end
   
   def index

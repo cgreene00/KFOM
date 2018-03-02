@@ -7,6 +7,10 @@ class Order < ActiveRecord::Base
   validates :quantity, numericality: true, if: :updated_max_avaliable?, on: :update
   
   class << self
+     def submitted
+      where("submitted = ?", true)
+    end
+    
     def unsubmitted
       where("submitted = ? and archived = ?", false, false)
     end
