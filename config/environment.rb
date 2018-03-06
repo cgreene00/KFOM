@@ -5,10 +5,10 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['SENDGRID_USERNAME'],
-  :password => ENV['SENDGRID_PASSWORD'],
-  :domain => 'calm-basin-35212.herokuapp.com',
-  :address => 'smtp.sendgrid.net',
+  :user_name => ENV['GMAIL_USERNAME'],
+  :password => ENV['GMAIL_PASSWORD'],
+  :domain => 'kfom.org',
+  :address => 'smtp.gmail.com',
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
