@@ -35,6 +35,9 @@
     <% end %>
     <% if !@order.nil? && !@order.submitted? %>
 	  <p>Warning! Order not submitted!</p>
+	  <script type="text/javascript">
+	  	orderWarning = 1
+	  </script>
     <% end %>
   </div>
 </div>
