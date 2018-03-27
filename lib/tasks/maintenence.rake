@@ -14,6 +14,12 @@ task :weekly_reminder => :environment do
   end
 end
 
+task :cancel_orders => :environment do
+	puts "Starting Cancellation Process..."
+    Order::cancel_orders
+	puts "Process Complete!"
+end
+
 task :buyer_reminder => :environment do
   if Time.now.wednesday?
     OrderMailer::cancelled_orders
