@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
         if profile.min_order_not_met?
           posts = profile.user.posts
           posts.each do |p|
-            p.orders.update_all(cancelled: true, week: Week.last)
+            p.orders.update_all(cancelled: true, week_id: Week.last.id)
           end
           OrderMailer.send_seller_cancelled(profile).deliver_now         
         end
