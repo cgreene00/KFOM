@@ -22,7 +22,7 @@ found at the bottom of this email)</p>
       <td>
         <% items.each do |i| %>
           <% subtotal = subtotal.to_f + (i.quantity.to_i * i.post.price.to_f) %>
-          <li><%= "#{i.post.title} - #{i.quantity}" %></li>
+          <li><%= "#{i.post.title} (i.post.unit) - #{i.quantity}" %></li>
         <% end %>
       </td>
       <td><%= number_to_currency(subtotal) %></td>

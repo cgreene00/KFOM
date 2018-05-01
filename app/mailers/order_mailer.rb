@@ -60,13 +60,13 @@ class OrderMailer < ApplicationMailer
   def weekly_order_summary
     @orders = Order.current.joins(user: :profile).order("profiles.lastname").group_by(&:user)
     @week = Week.last
-    mail(to: 'Kellit@cascadecomp.com',bcc: 'Katie.Swanson@sharecare.com', subject: 'Weekly Summary')
+    mail(to: 'Merritt.Driscoll@sharecare.com',bcc: 'Katie.Swanson@sharecare.com', subject: 'Weekly Summary')
   end
   
   def weekly_seller_summary
     @users = User.includes(:profile).order("profiles.business_name").joins(posts: :orders).where("post_id = orders.post_id and orders.week_id = ?", Week.last).distinct
     @week = Week.last
-    mail(to: 'Katie.Swanson@sharecare.com', bcc: 'Kellit@cascadecomp.com', subject: 'Sellers weekly summary')
+    mail(to: 'Katie.Swanson@sharecare.com', bcc: 'Merritt.Driscoll@sharecare.com', subject: 'Sellers weekly summary')
   end
   
 end
