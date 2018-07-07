@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h3>Hello,</h3>
 <p>Thank you for buying locally through KFOM! The following is a summary of your orders for the week.All orders must be picked up this <strong>Thursday between 5-7 pm at the Herald & News Building</strong> (2701 Foothills Blvd, follow signs to side entrance). Cash, check, and SNAP are all accepted forms of payment and <u>each producer must be paid separately</u>. If you choose to pay with cash, please separate exact change into envelopes for each producer.</p>
 <br />
@@ -50,3 +51,57 @@
 <p>Thank you for supporting our local farmers!</p>
 <p><a href="http://www.kfom.org/">www.KFOM.org</a></p>
 
+=======
+<h3>Hello,</h3>
+<p>Thank you for buying locally through KFOM! The following is a summary of your orders for the week. All orders must be picked up this <strong>Thursday between 5-7 pm at the Klamath Tool Library</strong> (1221 Main St.) Cash, check, and SNAP are all accepted forms of payment and <u>each producer must be paid separately</u>. If you choose to pay with cash, please separate exact change into envelopes for each producer.</p>
+<br />
+  <table style='width:100%;'>
+    <thead>
+      <th>Producer Name</th>
+      <th>Contact Info</th>
+      <th>Order Details</th>
+      <th>Check Payable To</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <% @order_items.each do |seller, items| %>
+      <% subtotal = 0 %>
+      <tr>
+        <td><%= seller.profile.business_name %></td>
+        <td>
+          <li><%= seller.email %></li>
+          <li><%= seller.profile.phone_formatted %></li>
+        </td>
+        <td>
+          <% items.each do |i| %>
+            <% subtotal = subtotal.to_f + (i.quantity.to_i * i.post.price.to_f) %>
+            <li><%= "#{i.post.title} - Quantity to pick up: #{i.quantity}"  %> </li>
+          <% end %>
+        </td>
+        <td><%= seller.profile.payable_to %></td>
+        <td><%= number_to_currency(subtotal) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<br />
+<em>Please read the instructions below. Detailed policies & procedures can be found in your welcome email you received when you registered.</em>
+<br />
+<h4>Payment:</h4>
+<p>If you would like to pay using your SNAP benefits, please bring your Oregon Trail card to pay at pickup.  Please be prepared to pay any remaining balance with cash or check.</p>
+
+<p><strong>Customers who fail to pick up are still responsible to pay the producer.</strong> Failure to pay will result in cancellation of your membership with KFOM. Alternative pickup times will <u>not</u> be arranged.</p>
+
+<p>Orders are not aggregated into one bundle, so please make sure to pick up each of your orders from each producer.</p>
+
+<h4>Questions?</h4>
+
+<p>Please contact food producers directly with any questions regarding your order. Other questions can be directed to KFOM.</p>
+
+<h4>KFOM Contact:</h4>
+<p><a href="mailto:info@kfom.org">info@kfom.org</a> or call Katie Swanson at 541-827-9442 or Jessie Dubose at 541-539-5920.</p>
+
+<p>Thank you for supporting our local farmers!</p>
+<p><a href="http://www.kfom.org/">www.KFOM.org</a></p>
+
+>>>>>>> 680cb05cc7d4a8206bb8855fccd7fe9a41f96587
