@@ -48,7 +48,7 @@ end
   gem 'spring'
   
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
   
   gem 'devise'
